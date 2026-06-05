@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net Desinfect – Hygiène • Sécurité • Protection</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d2140;
+    --green: #2e8b2e;
+    --light-green: #3db33d;
+    --white: #ffffff;
+    --bg: #f4f8f4;
+    --accent: #e8f5e9;
+    --gray: #5a6472;
+    --border: #c8e6c9;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--navy); }
+
+  nav {
+    background: var(--navy);
+    padding: 14px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,.35);
+  }
+  .nav-brand { color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 2px; }
+  .nav-brand span { color: var(--light-green); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav ul a { color: #cde; text-decoration: none; font-weight: 700; font-size: .9rem; letter-spacing: 1px; transition: color .2s; }
+  nav ul a:hover { color: var(--light-green); }
+
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #153a1e 100%);
+    padding: 70px 5% 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(46,139,46,.18) 0%, transparent 70%);
+  }
+  .hero-text { flex: 1; min-width: 280px; position: relative; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 30px;
+    margin-bottom: 18px;
+  }
+  .hero-text h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 3px;
+  }
+  .hero-text h1 span { color: var(--light-green); }
+  .hero-text p { color: #a8c5a0; font-size: 1rem; margin: 18px 0 28px; max-width: 420px; line-height: 1.7; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--green);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 20px rgba(46,139,46,.5);
+  }
+  .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(46,139,46,.6); }
+
+  .hero-logo { flex: 0 0 auto; position: relative; }
+  .shield-wrap {
+    width: 260px; height: 260px;
+    background: linear-gradient(145deg, #1a4a2a, #0d2140);
+    border-radius: 50% 50% 46% 46% / 42% 42% 58% 58%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    border: 4px solid var(--green);
+    box-shadow: 0 0 40px rgba(46,139,46,.35), inset 0 0 30px rgba(0,0,0,.3);
+    animation: pulse-shield 3s ease-in-out infinite;
+  }
+  @keyframes pulse-shield {
+    0%,100% { box-shadow: 0 0 40px rgba(46,139,46,.35), inset 0 0 30px rgba(0,0,0,.3); }
+    50% { box-shadow: 0 0 60px rgba(46,139,46,.55), inset 0 0 30px rgba(0,0,0,.3); }
+  }
+  .shield-icons { font-size: 2.2rem; margin-bottom: 6px; }
+  .shield-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #fff; letter-spacing: 3px; line-height: 1; text-align: center; }
+  .shield-name span { color: var(--light-green); }
+  .shield-sub { font-size: .62rem; color: #8fb88f; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; text-align: center; }
+
+  .section-title { text-align: center; margin-bottom: 50px; }
+  .section-title h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; letter-spacing: 3px; color: var(--navy); }
+  .section-title h2 span { color: var(--green); }
+  .section-title p { color: var(--gray); font-size: .95rem; margin-top: 8px; }
+  .underline-bar { width: 60px; height: 4px; background: var(--green); margin: 10px auto 0; border-radius: 2px; }
+
+  #services { padding: 80px 5%; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+  .service-card {
+    background: #fff; border: 2px solid var(--border); border-radius: 16px; padding: 30px 22px;
+    text-align: center; transition: transform .25s, box-shadow .25s, border-color .25s; cursor: default;
+  }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(46,139,46,.15); border-color: var(--green); }
+  .service-icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .service-card h3 { font-size: 1rem; font-weight: 800; color: var(--navy); letter-spacing: .5px; }
+  .service-card p { font-size: .82rem; color: var(--gray); margin-top: 8px; line-height: 1.5; }
+
+  #reserver { background: var(--navy); padding: 80px 5%; }
+  #reserver .section-title h2 { color: #fff; }
+  #reserver .section-title p { color: #8fb88f; }
+  #reserver .underline-bar { background: var(--light-green); }
+
+  .booking-card {
+    max-width: 700px; margin: 0 auto; background: #fff;
+    border-radius: 20px; padding: 48px 42px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:560px){ .form-row { grid-template-columns: 1fr; } .booking-card { padding: 30px 20px; } nav ul { gap: 14px; } }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-weight: 700; font-size: .85rem; color: var(--navy); margin-bottom: 7px; letter-spacing: .5px; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; border: 2px solid #d0e8d0; border-radius: 10px; padding: 12px 16px;
+    font-family: 'Nunito', sans-serif; font-size: .95rem; color: var(--navy);
+    transition: border-color .2s; outline: none; background: #fafffb;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .submit-btn {
+    width: 100%; background: var(--green); color: #fff; border: none; border-radius: 50px;
+    padding: 16px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.05rem;
+    cursor: pointer; transition: background .2s, transform .2s; letter-spacing: 1px; margin-top: 8px;
+  }
+  .submit-btn:hover { background: #1f6e1f; transform: translateY(-2px); }
+
+  .success-msg { display: none; text-align: center; padding: 30px; background: var(--accent); border-radius: 14px; border: 2px solid var(--border); }
+  .success-msg h3 { color: var(--green); font-size: 1.4rem; }
+  .success-msg p { color: var(--gray); margin-top: 8px; }
+  .wa-confirm { display:inline-block; margin-top:14px; background:#25d366; color:#fff; padding:12px 26px; border-radius:50px; font-weight:800; text-decoration:none; }
+
+  #contact { padding: 80px 5%; background: var(--bg); }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+  .contact-card { background: #fff; border-radius: 16px; padding: 32px 24px; text-align: center; border: 2px solid var(--border); box-shadow: 0 4px 18px rgba(46,139,46,.08); }
+  .contact-icon { font-size: 2.4rem; margin-bottom: 12px; }
+  .contact-card h4 { font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .contact-card p { color: var(--gray); font-size: .9rem; line-height: 1.7; }
+  .contact-card a { color: var(--green); font-weight: 700; text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  .wa-btn {
+    position: fixed; bottom: 28px; right: 24px;
+    background: #25d366; color: #fff; border-radius: 50px; padding: 14px 22px;
+    font-weight: 800; font-size: .9rem; text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 6px 24px rgba(37,211,102,.45); z-index: 200; transition: transform .2s;
+  }
+  .wa-btn:hover { transform: scale(1.06); }
+
+  footer { background: #081620; color: #5a7a6a; text-align: center; padding: 28px 5%; font-size: .85rem; }
+  footer strong { color: var(--light-green); }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s, transform .6s; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><span>NET</span> DESINFECT</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reserver">Réserver</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Hygiène • Sécurité • Protection</div>
+    <h1>NET<br><span>DESINFECT</span></h1>
+    <p>Des services professionnels pour un environnement sain. Désinfection, dératisation, désinsectisation et bien plus encore.</p>
+    <a href="#reserver" class="hero-cta">📋 Prendre rendez-vous</a>
+  </div>
+  <div class="hero-logo">
+    <div class="shield-wrap">
+      <div class="shield-icons">🦟🐀🦎</div>
+      <div class="shield-name"><span>NET</span><br>DESINFECT</div>
+      <div class="shield-sub">Hygiène • Sécurité • Protection</div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-title reveal">
+    <h2>Nos <span>Services</span></h2>
+    <p>Une gamme complète de solutions contre tous les nuisibles</p>
+    <div class="underline-bar"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-icon">🧴</div><h3>Désinfection</h3><p>Traitement complet des bâtiments et bureaux contre tous les agents pathogènes.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🪲</div><h3>Désinsectisation</h3><p>Élimination efficace de tous les insectes nuisibles (cafards, punaises, etc.).</p></div>
+    <div class="service-card reveal"><div class="service-icon">🦟</div><h3>Démoustication</h3><p>Traitement anti-moustiques pour sécuriser vos espaces intérieurs et extérieurs.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🐀</div><h3>Dératisation</h3><p>Destruction et prévention contre les rats et rongeurs nuisibles.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🐍</div><h3>Déserpentisation</h3><p>Intervention spécialisée pour l'éloignement et l'élimination des serpents.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🦇</div><h3>Destruction Chauves-Souris</h3><p>Traitement et délogement des chauves-souris dans vos locaux.</p></div>
+    <div class="service-card reveal"><div class="service-icon">📦</div><h3>Protection des Stocks</h3><p>Préservation de vos entrepôts et stocks contre les nuisibles.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🌿</div><h3>Lutte Anti-Larvaires</h3><p>Traitement larvicide contre les larves de moustiques et autres insectes.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🔬</div><h3>Analyse Physico-Chimique</h3><p>Analyse bactériologique et physico-chimique pour un diagnostic précis.</p></div>
+    <div class="service-card reveal"><div class="service-icon">🏢</div><h3>Bâtiments & Bureaux</h3><p>Traitement global adapté aux immeubles, hôtels et espaces professionnels.</p></div>
+    <div class="service-card reveal"><div class="service-icon">⚰️</div><h3>Exhumation</h3><p>Service d'exhumation réalisé dans le strict respect des normes sanitaires.</p></div>
+  </div>
+</section>
+
+<section id="reserver">
+  <div class="section-title reveal">
+    <h2>Réserver <span>un Service</span></h2>
+    <p>Remplissez le formulaire — nous vous recontactons rapidement</p>
+    <div class="underline-bar"></div>
+  </div>
+
+  <div class="booking-card reveal">
+    <div id="booking-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nom complet *</label>
+          <input type="text" id="nom" placeholder="Votre nom et prénom">
+        </div>
+        <div class="form-group">
+          <label>Téléphone / WhatsApp *</label>
+          <input type="tel" id="tel" placeholder="Ex: 06 678 04 89">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Adresse / Quartier</label>
+        <input type="text" id="adresse" placeholder="Votre adresse ou quartier">
+      </div>
+      <div class="form-group">
+        <label>Service souhaité *</label>
+        <select id="service">
+          <option value="">-- Choisissez un service --</option>
+          <option>Désinfection</option>
+          <option>Désinsectisation</option>
+          <option>Démoustication</option>
+          <option>Dératisation</option>
+          <option>Déserpentisation</option>
+          <option>Destruction des Chauves-Souris</option>
+          <option>Protection des Stocks</option>
+          <option>Lutte Anti-Larvaires</option>
+          <option>Analyse Physico-Chimique & Bactériologique</option>
+          <option>Bâtiments & Bureaux</option>
+          <option>Exhumation</option>
+          <option>Plusieurs services</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date souhaitée</label>
+          <input type="date" id="date">
+        </div>
+        <div class="form-group">
+          <label>Type de local</label>
+          <select id="local">
+            <option value="">-- Sélectionner --</option>
+            <option>Maison / Villa</option>
+            <option>Appartement</option>
+            <option>Bureau / Commerce</option>
+            <option>Entrepôt</option>
+            <option>Hôtel / Restaurant</option>
+            <option>Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Message (optionnel)</label>
+        <textarea id="message" placeholder="Précisez votre demande, la superficie, ou toute autre information utile..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="submitForm()">✅ Envoyer ma demande</button>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <h3>✅ Demande envoyée !</h3>
+      <p>Merci <strong id="client-name"></strong> ! Notre équipe vous contactera très prochainement.<br>Pour un traitement urgent, appelez le <strong>06 678 04 89</strong>.</p>
+      <br>
+      <a id="wa-link" class="wa-confirm" href="#" target="_blank">📲 Confirmer via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-title reveal">
+    <h2>Nous <span>Contacter</span></h2>
+    <p>Disponibles du lundi au samedi pour répondre à vos besoins</p>
+    <div class="underline-bar"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card reveal">
+      <div class="contact-icon">📞</div>
+      <h4>Téléphone</h4>
+      <p><a href="tel:066780489">06 678 04 89</a><br><a href="tel:057200946">05 720 09 46</a></p>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">💬</div>
+      <h4>WhatsApp</h4>
+      <p><a href="https://wa.me/66780489" target="_blank">Écrire sur WhatsApp<br>06 678 04 89</a></p>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">🕐</div>
+      <h4>Horaires</h4>
+      <p><strong>Lundi – Vendredi</strong><br>08h00 – 17h00<br><br><strong>Samedi</strong><br>08h00 – 13h30</p>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">🌍</div>
+      <h4>Notre Mission</h4>
+      <p>Des services professionnels pour un environnement sain et sécurisé.</p>
+    </div>
+  </div>
+</section>
+
+<a class="wa-btn" href="https://wa.me/66780489" target="_blank">💬 WhatsApp</a>
+
+<footer>
+  <p>&copy; 2024 <strong>Net Desinfect</strong> – Tous droits réservés &nbsp;|&nbsp; Hygiène • Sécurité • Protection</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => obs.observe(r));
+
+  function submitForm() {
+    const nom = document.getElementById('nom').value.trim();
+    const tel = document.getElementById('tel').value.trim();
+    const service = document.getElementById('service').value;
+    if (!nom || !tel || !service) {
+      alert('Veuillez remplir les champs obligatoires : Nom, Téléphone et Service souhaité.');
+      return;
+    }
+    document.getElementById('client-name').textContent = nom;
+    const adresse = document.getElementById('adresse').value;
+    const date = document.getElementById('date').value;
+    const msg = document.getElementById('message').value;
+    const waText = encodeURIComponent("Bonjour Net Desinfect 👋\n\nNom: " + nom + "\nTél: " + tel + "\nService: " + service + "\nAdresse: " + adresse + "\nDate souhaitée: " + date + "\nMessage: " + msg);
+    document.getElementById('wa-link').href = "https://wa.me/66780489?text=" + waText;
+    document.getElementById('booking-form').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  }
+</script>
+</body>
+</html>
